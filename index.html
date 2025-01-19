@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Care AI Assistant</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="background-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-leaf"></i> PlantCare AI
+        </div>
+        <button class="btn">
+            <i class="fas fa-history"></i> History
+        </button>
+    </nav>
+
+    <div class="main-container">
+        <div class="glass-card">
+            <h2>Smart Plant Detection</h2>
+            <p>Get instant analysis and care recommendations for your plants</p>
+
+            <div class="quick-actions">
+                <div class="action-card">
+                    <i class="fas fa-camera action-icon"></i>
+                    <div>Scan Plant</div>
+                </div>
+                <div class="action-card">
+                    <i class="fas fa-history action-icon"></i>
+                    <div>History</div>
+                </div>
+                <div class="action-card">
+                    <i class="fas fa-book action-icon"></i>
+                    <div>Plant Guide</div>
+                </div>
+            </div>
+
+            <div class="camera-container" id="startDetect">
+                <i class="fas fa-camera-retro camera-icon"></i>
+                <h3>Real-Time Plant Detection</h3>
+                <p>Point your camera at a plant or upload an image</p>
+                <button class="btn" style="margin-top: 1rem;">
+                    <i class="fas fa-upload"></i> Upload Image
+                </button>
+            </div>
+        </div>
+
+        <div class="glass-card">
+            <h2>Analysis Results</h2>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+
+            <div class="plant-info">
+                <div class="plant-image">
+                    <i class="fas fa-seedling" style="font-size: 4rem;"></i>
+                </div>
+                <div>
+                    <h3>Plant Details</h3>
+                    <p><strong>Species:</strong> <span id="plant-type">Garden Rose</span></p>
+                    <p><strong>Condition:</strong> <span id="disease">Black Spot Fungus</span></p>
+                    <div class="status-badge">Attention Required</div>
+
+                    <div class="treatment-steps">
+                        <h3>Care Instructions</h3>
+                        <div class="treatment-step">
+                            <div class="step-number">1</div>
+                            <div>Remove affected leaves and dispose of them properly</div>
+                        </div>
+                        <div class="treatment-step">
+                            <div class="step-number">2</div>
+                            <div>Apply organic fungicide in the morning</div>
+                        </div>
+                        <div class="treatment-step">
+                            <div class="step-number">3</div>
+                            <div>Improve air circulation around the plant</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/ml5@0.12.2/dist/ml5.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
