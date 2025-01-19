@@ -93,6 +93,12 @@ body {
     margin: 2rem 0;
 }
 
+#video {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
 .camera-container:hover {
     background: rgba(255, 255, 255, 0.1);
     transform: scale(1.02);
@@ -110,11 +116,15 @@ body {
     100% { transform: scale(1); }
 }
 
+.controls {
+    padding-bottom: 0.8rem;
+}
+
 .btn {
     background: rgba(255, 255, 255, 0.1);
     color: white;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 0.8rem 1.5rem;
+    padding: 1rem 1.5rem;
     border-radius: 10px;
     cursor: pointer;
     font-size: 1rem;
