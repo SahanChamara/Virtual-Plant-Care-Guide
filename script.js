@@ -102,5 +102,10 @@ const func = async () => {
     };
 
     const result = await model.generateContent([prompt,image]);
+    // console.log(result.response.text());
+
     console.log(result.response.text());
+    
+
+    document.getElementById("ins1").innerHTML=`<p>${result.response.text()}</p>`
 }
