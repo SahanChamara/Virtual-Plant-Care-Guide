@@ -44,14 +44,14 @@
                 </div>
             </div>
 
-            <div class="camera-container" id="startDetect">
+            <div class="camera-container">
                 <i class="fas fa-camera-retro camera-icon"></i>
                 <h3>Real-Time Plant Detection</h3>
                 <video id="video" autoplay playsinline></video>
                 <canvas id="canvas" width="640" height="480" style="display:none;"></canvas>
                 <div class="controls">
-                    <button id="startBtn" class="btn">Start Camera</button>
-                    <button id="stopBtn" class="btn secondary" disabled>Stop Camera</button>
+                    <button class="btn" id="startDetect">Start Camera</button>
+                    <button class="btn secondary" id="stopDetect" disabled>Stop Camera</button>
                 </div>
 
                 <p>Point your camera at a plant</p>
@@ -83,14 +83,14 @@
                             <div class="step-number">1</div>
                             <div><p  id="ins1">test</p></div>
                         </div>
-                        <div class="treatment-step">
+                        <!-- <div class="treatment-step">
                             <div class="step-number">2</div>
                             <div>Apply organic fungicide in the morning</div>
                         </div>
                         <div class="treatment-step">
                             <div class="step-number">3</div>
                             <div>Improve air circulation around the plant</div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

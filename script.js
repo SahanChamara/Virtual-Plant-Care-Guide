@@ -19,16 +19,21 @@ startDetect.addEventListener('click', function () {
 
 });
 
+document.getElementById("stopDetect").addEventListener('click',() =>{
+   return    
+})
+
 // Load the custom model
-const classifier = ml5.imageClassifier('https://teachablemachine.withgoogle.com/models/r6BsdZohI/model.json', modelLoaded);
+const classifier = ml5.imageClassifier('https://teachablemachine.withgoogle.com/models/oXcD2kxX8/model.json', modelLoaded);
 
 function modelLoaded() {
     console.log('Model Loaded!');
     classifyVideo();
 }
 
-let imageData='';
-let base64Image="";
+let imageData = '';
+let base64Image = "";
+let diseaseName="";
 
 // Classify video frame
 function classifyVideo() {
@@ -41,8 +46,10 @@ function classifyVideo() {
         console.log(resultDetection);
         console.log(results[0].label);
 
-        if (results[0].label == "Class 3") {
-            console.log("this person is Sahan Chamara");
+        if (results[0].label == "Anthracnose" || results[0].label == "Black Spot" || results[0].label == "Blight"){
+            console.log("this is a ", results[0].label, "Disease");
+            diseaseName = results[0].label;
+            console.log("disease name variable", diseaseName);
 
             // capturing the detected object
             // Draw the current video frame onto the canvas
@@ -50,16 +57,14 @@ function classifyVideo() {
 
             // Convert the canvas to a data URL (base64 image)
             imageData = canvas.toDataURL('image/png');
-            console.log("actucal base 64",imageData);
-            base64Image=imageData;
-            
+            base64Image = imageData;
+
 
             // converting base 64 data url to blob object
             const blob = base64ToBlob(imageData);
 
             // finaly convert the detected object to image object
             const url = URL.createObjectURL(blob);
-            console.log('Normal URL:', url);
 
             //isDetectionActive = false;
 
@@ -89,11 +94,9 @@ function base64ToBlob(base64, mimeType = 'image/png') {
 const genAI = new GoogleGenerativeAI("");
 
 const func = async () => {
-    console.log("my base 64 data",base64Image);
-    
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-    const prompt = "analys this image";
+    const prompt = diseaseName+" -This is a plant Disease. what is the treatment of this disease?..can you provide step by step treatments?";
     const image = {
         inlineData: {
             data: base64Image.split(',')[1],
@@ -101,11 +104,11 @@ const func = async () => {
         },
     };
 
-    const result = await model.generateContent([prompt,image]);
+    const result = await model.generateContent([prompt, image]);
     // console.log(result.response.text());
 
     console.log(result.response.text());
-    
 
-    document.getElementById("ins1").innerHTML=`<p>${result.response.text()}</p>`
+
+    document.getElementById("ins1").innerHTML = `<p>${result.response.text()}</p>`
 }
