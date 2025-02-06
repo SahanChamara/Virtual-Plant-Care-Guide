@@ -42,13 +42,21 @@ function classifyVideo() {
             console.error(err);
             return;
         }
-        resultDetection.innerText = `Label: ${results[0].label}, Confidence: ${results[0].confidence.toFixed(2)}`;
+        resultDetection.innerText = `${results[0].label}, Confidence: ${results[0].confidence.toFixed(2)}`;
         console.log(resultDetection);
         console.log(results[0].label);
 
-        if (results[0].label == "Anthracnose" || results[0].label == "Black Spot" || results[0].label == "Blight"){
+        if(!results || results.length === 0){
+            console.log("no classification found.");
+            return;
+        }
+
+        let detectedLabel = results[0].label;
+        let diseaseList = ["Anthracnose","Black Spot","mosaic virus","Peper Bell Bacterial Spot"];
+
+        if (diseaseList.includes(detectedLabel) && results[0].confidence.toFixed(2) > 0.90){
             console.log("this is a ", results[0].label, "Disease");
-            diseaseName = results[0].label;
+            diseaseName = results[0].label+" Plant Disease";
             console.log("disease name variable", diseaseName);
 
             // capturing the detected object
@@ -90,13 +98,14 @@ function base64ToBlob(base64, mimeType = 'image/png') {
 }
 
 // API Intregration
+var md = window.markdownit();
 
 const genAI = new GoogleGenerativeAI("");
 
 const func = async () => {
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-    const prompt = diseaseName+" -This is a plant Disease. what is the treatment of this disease?..can you provide step by step treatments?";
+    const prompt = diseaseName+" This is a plant Disease. analys this plant disease and give me how i treatment to it step by step";
     const image = {
         inlineData: {
             data: base64Image.split(',')[1],
@@ -109,6 +118,7 @@ const func = async () => {
 
     console.log(result.response.text());
 
+    let finalresult = md.render(result.response.text());
 
-    document.getElementById("ins1").innerHTML = `<p>${result.response.text()}</p>`
+    document.getElementById("treatment").innerHTML = `<p>${finalresult}</p>`
 }
