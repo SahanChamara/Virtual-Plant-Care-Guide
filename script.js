@@ -24,7 +24,7 @@ document.getElementById("stopDetect").addEventListener('click',() =>{
 })
 
 // Load the custom model
-const classifier = ml5.imageClassifier('https://teachablemachine.withgoogle.com/models/oXcD2kxX8/model.json', modelLoaded);
+const classifier = ml5.imageClassifier('https://teachablemachine.withgoogle.com/models/8GYtlPoCt/model.json', modelLoaded);
 
 function modelLoaded() {
     console.log('Model Loaded!');
@@ -52,7 +52,7 @@ function classifyVideo() {
         }
 
         let detectedLabel = results[0].label;
-        let diseaseList = ["Anthracnose","Black Spot","mosaic virus","Peper Bell Bacterial Spot"];
+        let diseaseList = ["Anthracnose","Black Spot","mosaic virus","Peper Bell Bacterial Spot","Blight","botrytis cinerea","fire blight","Healthy","leaf curl","Powdery Mildew","Rust"];
 
         if (diseaseList.includes(detectedLabel) && results[0].confidence.toFixed(2) > 0.90){
             console.log("this is a ", results[0].label, "Disease");
@@ -76,7 +76,9 @@ function classifyVideo() {
 
             //isDetectionActive = false;
 
-            func();
+            setTimeout(() => {
+                func();
+            }, 10000);
 
         } else {
             requestAnimationFrame(classifyVideo);
@@ -101,11 +103,19 @@ function base64ToBlob(base64, mimeType = 'image/png') {
 var md = window.markdownit();
 
 const genAI = new GoogleGenerativeAI("");
+let prompt;
 
 const func = async () => {
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
-    const prompt = diseaseName+" This is a plant Disease. analys this plant disease and give me how i treatment to it step by step";
+    if(diseaseName.startsWith("Healthy")){
+        prompt = "Can you Recommend a more tips to protect this Healthy plant?";
+    }else{
+        prompt = diseaseName+" This is a plant Disease. analys this plant disease and give me how i treatment to it step by step";
+
+    }
+
+    // prompt = diseaseName+" This is a plant Disease. analys this plant disease and give me how i treatment to it step by step";
     const image = {
         inlineData: {
             data: base64Image.split(',')[1],

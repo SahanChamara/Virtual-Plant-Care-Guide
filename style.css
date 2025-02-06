@@ -251,3 +251,92 @@ body {
     font-size: 2rem;
     margin-bottom: 0.5rem;
 }
+
+.treatment-steps {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #f8faf8;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+.treatment-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.treatment-header h3 {
+    color: #2d5a27;
+    font-size: 24px;
+    margin: 0;
+}
+
+.plant-icon {
+    width: 32px;
+    height: 32px;
+    background: #4a8144;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.treatment-step {
+    display: flex;
+    gap: 20px;
+    margin: 15px 0;
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    transition: transform 0.2s;
+}
+
+.treatment-step:hover {
+    transform: translateX(5px);
+}
+
+.step-number {
+    width: 36px;
+    height: 36px;
+    background: #4a8144;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.step-content {
+    flex: 1;
+}
+
+.step-content h4 {
+    color: #2d5a27;
+    margin: 0 0 10px 0;
+}
+
+.step-content p {
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.treatment-footer {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #e0e0e0;
+    color: #666;
+    font-size: 0.9em;
+}
+
+@media (max-width: 600px) {
+    .treatment-steps {
+        margin: 10px;
+        padding: 15px;
+    }
+}
