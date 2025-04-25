@@ -101,8 +101,8 @@ function base64ToBlob(base64, mimeType = 'image/png') {
 
 // API Intregration
 var md = window.markdownit();
-
-const genAI = new GoogleGenerativeAI("AIzaSyCp_BM4hR_y4f55kCDJGYZvtmhanBEu-KA");
+//AIzaSyCp_BM4hR_y4f55kCDJGYZvtmhanBEu-KA
+const genAI = new GoogleGenerativeAI("");
 let prompt;
 
 const func = async () => {
