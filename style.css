@@ -138,10 +138,15 @@ body {
 }
 
 .plant-info {
-    display: grid;
+/*     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: 2rem;
+    margin-top: 1rem; */
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
     margin-top: 1rem;
+    width: 100%;
 }
 
 .plant-image {
@@ -156,7 +161,14 @@ body {
 }
 
 .treatment-steps {
-    margin-top: 2rem;
+/*     margin-top: 2rem; */
+width: 100%;
+max-width: none;
+margin: 1rem 0;
+background: rgba(255, 255, 255, 0.05);
+border-radius: 12px;
+padding: 1.5rem;
+border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .treatment-step {

@@ -19,8 +19,8 @@ startDetect.addEventListener('click', function () {
 
 });
 
-document.getElementById("stopDetect").addEventListener('click',() =>{
-   return    
+document.getElementById("stopDetect").addEventListener('click', () => {
+    return
 })
 
 // Load the custom model
@@ -33,7 +33,7 @@ function modelLoaded() {
 
 let imageData = '';
 let base64Image = "";
-let diseaseName="";
+let diseaseName = "";
 
 // Classify video frame
 function classifyVideo() {
@@ -46,17 +46,17 @@ function classifyVideo() {
         console.log(resultDetection);
         console.log(results[0].label);
 
-        if(!results || results.length === 0){
+        if (!results || results.length === 0) {
             console.log("no classification found.");
             return;
         }
 
         let detectedLabel = results[0].label;
-        let diseaseList = ["Anthracnose","Black Spot","mosaic virus","Peper Bell Bacterial Spot","Blight","botrytis cinerea","fire blight","Healthy","leaf curl","Powdery Mildew","Rust"];
+        let diseaseList = ["Anthracnose", "Black Spot", "mosaic virus", "Peper Bell Bacterial Spot", "Blight", "botrytis cinerea", "fire blight", "Healthy", "leaf curl", "Powdery Mildew", "Rust"];
 
-        if (diseaseList.includes(detectedLabel) && results[0].confidence.toFixed(2) > 0.90){
+        if (diseaseList.includes(detectedLabel) && results[0].confidence.toFixed(2) > 0.90) {
             console.log("this is a ", results[0].label, "Disease");
-            diseaseName = results[0].label+" Plant Disease";
+            diseaseName = results[0].label + " Plant Disease";
             console.log("disease name variable", diseaseName);
 
             // capturing the detected object
@@ -78,7 +78,7 @@ function classifyVideo() {
 
             setTimeout(() => {
                 func();
-            }, 10000);
+            }, 5000);
 
         } else {
             requestAnimationFrame(classifyVideo);
@@ -102,20 +102,20 @@ function base64ToBlob(base64, mimeType = 'image/png') {
 // API Intregration
 var md = window.markdownit();
 
-const genAI = new GoogleGenerativeAI("");
+const genAI = new GoogleGenerativeAI("AIzaSyCp_BM4hR_y4f55kCDJGYZvtmhanBEu-KA");
 let prompt;
 
 const func = async () => {
     const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
-    if(diseaseName.startsWith("Healthy")){
+    if (diseaseName.startsWith("Healthy")) {
         prompt = "Can you Recommend a more tips to protect this Healthy plant?";
-    }else{
-        prompt = diseaseName+" This is a plant Disease. analys this plant disease and give me how i treatment to it step by step";
+    } else {
+        prompt = diseaseName + " This is a plant Disease. analys this plant disease and give me how i treatment to it step by step";
 
     }
 
-    // prompt = diseaseName+" This is a plant Disease. analys this plant disease and give me how i treatment to it step by step";
+    //prompt = diseaseName+" This is a plant Disease. analys this plant disease and give me how i treatment to it step by step";
     const image = {
         inlineData: {
             data: base64Image.split(',')[1],
@@ -131,4 +131,6 @@ const func = async () => {
     let finalresult = md.render(result.response.text());
 
     document.getElementById("treatment").innerHTML = `<p>${finalresult}</p>`
+
+
 }
