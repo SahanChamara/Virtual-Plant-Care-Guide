@@ -74,8 +74,6 @@ function classifyVideo() {
             // finaly convert the detected object to image object
             const url = URL.createObjectURL(blob);
 
-            //isDetectionActive = false;
-
             setTimeout(() => {
                 func();
             }, 5000);
@@ -102,7 +100,7 @@ function base64ToBlob(base64, mimeType = 'image/png') {
 // API Intregration
 var md = window.markdownit();
 
-const genAI = new GoogleGenerativeAI("AIzaSyCp_BM4hR_y4f55kCDJGYZvtmhanBEu-KA");
+const genAI = new GoogleGenerativeAI("");
 let prompt;
 
 const func = async () => {
@@ -115,7 +113,6 @@ const func = async () => {
 
     }
 
-    //prompt = diseaseName+" This is a plant Disease. analys this plant disease and give me how i treatment to it step by step";
     const image = {
         inlineData: {
             data: base64Image.split(',')[1],
@@ -124,7 +121,6 @@ const func = async () => {
     };
 
     const result = await model.generateContent([prompt, image]);
-    // console.log(result.response.text());
 
     console.log(result.response.text());
 
